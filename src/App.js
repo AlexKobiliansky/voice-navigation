@@ -20,13 +20,13 @@ function App() {
   ]
   const {transcript} = useSpeechRecognition({commands});
 
-  const pages = ['home', 'about', 'contacts', 'somepage', 'blog', 'article'];
+  const pages = ['home', 'about', 'contacts', 'some page', 'blog', 'article'];
   const urls = {
     home: '/',
     about: '/about',
     contacts: '/contacts',
-    somepage: '/somepage',
-    blog: '/somepage',
+    ['some page']: '/somepage',
+    blog: '/blog',
     article: '/blog/article'
   }
 
@@ -61,14 +61,14 @@ function App() {
         <Route path="/blog" component={Blog} exact/>
         <Route path="/blog/article" component={Article} />
 
-        {/*{redirect}*/}
+        {redirect}
       </BrowserRouter>
       
       <p id="transcript">
         Transcript: {transcript}
       </p>
 
-      <button onClick={SpeechRecognition}>Start</button>
+      <button onClick={() => SpeechRecognition.startListening({ language: 'en-US' })}>Start</button>
     </div>
   );
 }
